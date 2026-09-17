@@ -2,20 +2,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { nav, whatsapp } from "@/data/site";
+import { email, nav, whatsapp } from "@/data/site";
 export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
       <header className="nav">
         <Link className="brand" href="/">
-          <Image
-            src="/jaeger-logo-primary.png"
-            alt="Jaeger Media"
-            width={170}
-            height={100}
-            priority
-          />
+          <span className="brand-monogram" aria-hidden="true">
+            JM
+          </span>
+          <span className="brand-name">JAEGER MEDIA</span>
         </Link>
         <nav className="navlinks" aria-label="Main navigation">
           {nav.map(([n, h]) => (
@@ -25,7 +22,7 @@ export function Header() {
           ))}
         </nav>
         <Link className="btn hidden-cta" href={whatsapp}>
-          Let’s talk <span className="arrow">↗</span>
+          WhatsApp <span className="arrow">↗</span>
         </Link>
         <button
           className="menu-btn"
@@ -83,8 +80,8 @@ export function Footer() {
           <div>
             <h4>Connect</h4>
             <Link href={whatsapp}>WhatsApp</Link>
-            <p>Email address to be added</p>
-            <Link href="/contact">Start a project</Link>
+            <a href={`mailto:${email}`}>{email}</a>
+            <Link href="/contact">Project enquiry</Link>
           </div>
         </div>
         <div className="footer-bottom">
@@ -103,12 +100,12 @@ export function CTA() {
       <p className="eyebrow">Your next move</p>
       <h2 className="display">Ready to look the part—and perform?</h2>
       <div className="hero-actions">
-        <Link className="btn" href="/contact">
-          Start your project <span className="arrow">↗</span>
+        <Link className="btn" href={whatsapp}>
+          WhatsApp us <span className="arrow">↗</span>
         </Link>
-        <Link className="btn ghost" href={whatsapp}>
-          Chat on WhatsApp
-        </Link>
+        <a className="btn ghost" href={`mailto:${email}`}>
+          Email us
+        </a>
       </div>
     </section>
   );

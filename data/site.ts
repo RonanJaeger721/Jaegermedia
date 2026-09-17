@@ -175,3 +175,4 @@ export const pricing = [
 ] as const;
 export const whatsapp =
   "https://wa.me/263789937251?text=Hi%20Jaeger%20Media%2C%20I%27d%20like%20to%20discuss%20a%20project.";
+export const email = "Jaegermedia1@gmail.com";

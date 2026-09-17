@@ -5,6 +5,7 @@ import { Shell } from "./site-shell";
 import { Reveal } from "./motion";
 import {
   clients,
+  email,
   faqs,
   pricing,
   projects,
@@ -350,7 +351,9 @@ function Contact() {
           </div>
           <div className="contact-card glass">
             <b>Email</b>
-            <span>Email address to be added before launch.</span>
+            <span>Send us your brief or project details.</span>
+            <br />
+            <a href={`mailto:${email}`}>{email} ↗</a>
           </div>
           <div className="contact-card glass">
             <b>Response time</b>

@@ -4,7 +4,7 @@ import { Reveal } from "./motion";
 import { ServiceRail } from "./service-rail";
 import { Shell } from "./site-shell";
 import { featuredProjects, liveProjects } from "@/data/liveProjects";
-import { pricing, whatsapp } from "@/data/site";
+import { email, pricing, whatsapp } from "@/data/site";
 
 const adPlans = [
   [
@@ -28,68 +28,64 @@ export function HomePage() {
   return (
     <Shell hideCTA>
       <main className="jm-home">
-        <section className="jm-hero jm-hero-v2">
-          <div className="hero-signal" aria-hidden="true" />
-          <div className="shell hero-center">
-            <Image
-              className="hero-brand"
-              src="/jaeger-logo-primary.png"
-              alt="Jaeger Media"
-              width={454}
-              height={267}
-              priority
-            />
-            <p className="jm-kicker light">Jaeger Media · Zimbabwe</p>
-            <h1>
-              We build digital presence
-              <br />
-              <em>that gets noticed.</em>
-            </h1>
-            <p className="jm-lead">
-              Websites, content and advertising built to help your business look
-              better, reach more people and turn attention into opportunity.
-            </p>
-            <div className="jm-actions">
-              <Link className="jm-btn pale" href="/work">
-                View our work ↗
-              </Link>
-              <Link className="jm-btn dark-line" href="/contact">
-                Start a project
-              </Link>
+        <section className="jm-hero jm-hero-v3">
+          <div className="shell hero-v3-grid">
+            <div className="hero-v3-copy">
+              <p className="jm-kicker light">
+                Independent creative agency · Zimbabwe
+              </p>
+              <h1>
+                Make your brand
+                <br />
+                <em>impossible to ignore.</em>
+              </h1>
+              <p className="jm-lead">
+                Jaeger Media brings websites, content and advertising into one
+                sharp digital presence—built to be remembered and chosen.
+              </p>
+              <div className="jm-actions">
+                <Link className="jm-btn pale" href={whatsapp}>
+                  WhatsApp us ↗
+                </Link>
+                <a className="jm-btn dark-line" href={`mailto:${email}`}>
+                  Email us
+                </a>
+              </div>
+            </div>
+
+            <div
+              className="jm-signal-stage"
+              role="img"
+              aria-label="Jaeger Media creative signal"
+            >
+              <div className="signal-orbit orbit-one" aria-hidden="true" />
+              <div className="signal-orbit orbit-two" aria-hidden="true" />
+              <div className="signal-sweep" aria-hidden="true" />
+              <div className="signal-core">
+                <Image
+                  src="/jaeger-logo-secondary.jpg"
+                  alt="Jaeger Media monogram"
+                  fill
+                  sizes="(max-width: 700px) 65vw, 420px"
+                  priority
+                />
+              </div>
+              <span className="orbit-label label-web">WEB / 01</span>
+              <span className="orbit-label label-ads">ADS / 02</span>
+              <span className="orbit-label label-brand">BRAND / 03</span>
+              <span className="signal-status">
+                <i /> Signal live
+              </span>
             </div>
           </div>
           <div
-            className="hero-client-arc"
+            className="hero-v3-ticker"
             role="region"
-            aria-label="Selected published websites"
+            aria-label="Jaeger Media capabilities"
           >
-            {liveProjects.slice(0, 7).map((project, index) => (
-              <a
-                key={project.name}
-                className={`hero-logo-card hero-card-${index}`}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {project.logo ? (
-                  <Image
-                    src={project.logo}
-                    alt={`${project.name} logo`}
-                    fill
-                    sizes="190px"
-                  />
-                ) : (
-                  <strong>{project.mark}</strong>
-                )}
-                <span>{project.name}</span>
-              </a>
-            ))}
-          </div>
-          <div className="hero-proof">
-            <span>Websites</span>
-            <span>Advertising</span>
-            <span>Social Media</span>
-            <span>Branding</span>
+            <span>{liveProjects.length} published websites</span>
+            <span>Where vision meets results</span>
+            <span>Web · Ads · Content · Brand</span>
           </div>
         </section>
 
@@ -418,12 +414,12 @@ export function HomePage() {
               can help.
             </p>
             <div className="jm-actions">
-              <Link className="jm-btn pale" href="/contact">
-                Start a project ↗
+              <Link className="jm-btn pale" href={whatsapp}>
+                WhatsApp us ↗
               </Link>
-              <Link className="jm-btn dark-line" href={whatsapp}>
-                WhatsApp us
-              </Link>
+              <a className="jm-btn dark-line" href={`mailto:${email}`}>
+                Email us
+              </a>
             </div>
           </div>
         </section>
