@@ -36,17 +36,51 @@ export function HomePage() {
             <Reveal className="jm-section-head">
               <p className="jm-kicker light">What we do</p>
               <h2>
-                What we do.
+                One agency.
                 <br />
-                One digital presence.
+                Your digital presence.
               </h2>
               <p>
-                Different services, working together to make your business seen,
-                found and chosen.
+                From the first piece of content to the ad that puts it in front
+                of the right people, we build the digital presence around the business.
               </p>
             </Reveal>
           </div>
           <ServiceRail />
+        </section>
+
+        <section className="growth-engine">
+          <div className="shell growth-grid">
+            <Reveal className="growth-copy">
+              <p className="jm-kicker light">Paid advertising + lead generation</p>
+              <h2>Attention is good.<br/><em>Enquiries are better.</em></h2>
+              <p>We plan the offer, build the creative, define the audience and manage the campaign — with the focus on enquiries, leads and measurable business activity.</p>
+              <div className="platform-line"><span>Meta / Facebook</span><span>Instagram</span><span>TikTok</span></div>
+              <Link href="/contact">Run ads with us ↗</Link>
+            </Reveal>
+            <Reveal className="lead-flow" aria-label="Lead generation journey">
+              <div><span>01</span><b>Ad</b><small>The right offer</small></div><i>→</i>
+              <div><span>02</span><b>Content</b><small>A clear message</small></div><i>→</i>
+              <div><span>03</span><b>WhatsApp</b><small>A simple next step</small></div><i>→</i>
+              <div className="flow-result"><span>04</span><b>Enquiry</b><small>A real conversation</small></div>
+            </Reveal>
+          </div>
+        </section>
+
+        <section className="social-core">
+          <div className="shell social-core-grid">
+            <Reveal className="social-visual">
+              <Image src="/services/content-creation.jpg" alt="Professional content production in a daylight studio" fill sizes="(max-width: 800px) 100vw, 48vw"/>
+              <span>Content in production</span>
+            </Reveal>
+            <Reveal className="social-copy">
+              <p className="jm-kicker">Social media management</p>
+              <h2>Active. Consistent.<br/>Worth following.</h2>
+              <p>We keep brands active and recognisable — from planning and creative to publishing and ongoing campaign support.</p>
+              <div className="social-list">{["Content planning","Social graphics","Reels / short video","Captions + posting","Community engagement","Campaign support","Brand consistency"].map((item)=><span key={item}>{item}</span>)}</div>
+              <Link href="/contact">Get a management quote ↗</Link>
+            </Reveal>
+          </div>
         </section>
 
         <section className="jm-live">
@@ -93,7 +127,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="shell selected-builds">
-            <p className="jm-kicker">Selected builds</p>
+            <p className="jm-kicker">Selected work · websites that complete the picture</p>
             {featuredProjects.map((project, i) => (
               <Reveal className="build-row" key={project.name}>
                 <div className="build-count">0{i + 1}</div>
@@ -127,25 +161,24 @@ export function HomePage() {
             <Reveal>
               <p className="jm-kicker">The Jaeger story</p>
               <h2>
-                Built from
+                Built by two brothers.
                 <br />
-                the work.
+                Built around the work.
               </h2>
             </Reveal>
             <Reveal>
               <p className="story-large">
-                Jaeger Media is a Zimbabwean digital agency built by two
-                brothers around one simple idea: good digital work should look
-                sharp and help the business move.
+                Jaeger Media is a social media marketing agency based in Harare,
+                Zimbabwe, founded by brothers Ronan and Michael.
               </p>
               <p>
-                What started with websites, designs and direct outreach grew
-                into work across advertising, social media, digital products and
-                ongoing brand management.
+                What started with websites, design and direct outreach developed
+                into a wider digital agency focused on what businesses need online —
+                content, advertising, lead generation, branding and the systems behind them.
               </p>
               <p>
-                We stay close to the work — talking to clients, building the
-                product, launching the campaign and improving what comes next.
+                We stay close to the work. From the first conversation to the content,
+                campaign, website and launch, the same team remains involved throughout.
               </p>
             </Reveal>
           </div>
@@ -179,9 +212,9 @@ export function HomePage() {
                   <h3>Ronan</h3>
                   <h4>Founder / Creative & Client Lead</h4>
                   <p>
-                    Ronan is the face of Jaeger Media — leading client
-                    relationships, creative direction, strategy, content and the
-                    growth side of the agency.
+                    Ronan is the face of Jaeger Media, handling client relationships,
+                    creative direction, campaigns and growth. He works directly with
+                    businesses to shape the offer and turn it into content people respond to.
                   </p>
                 </div>
               </Reveal>
@@ -204,9 +237,9 @@ export function HomePage() {
                   <h3>Michael “Mikey”</h3>
                   <h4>Development & Technical Lead</h4>
                   <p>
-                    Mikey handles development, backend systems, deployment and
-                    the infrastructure that turns creative direction into
-                    working digital products.
+                    Mikey works behind the build — handling development, backend systems,
+                    technical implementation and deployment. He turns strategy and creative
+                    direction into working digital products and systems.
                   </p>
                 </div>
               </Reveal>

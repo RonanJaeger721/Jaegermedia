@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const tiles = [
   {
-    title: "Web Design",
-    image: "/services/web-design.jpg",
-    alt: "Editorial website design inspiration",
+    title: "Social Media Management",
+    image: "/services/social-media.jpg",
+    alt: "Social media moodboard and campaign inspiration",
   },
   {
     title: "Paid Advertising",
@@ -14,9 +14,14 @@ const tiles = [
     alt: "Creative campaign production inspiration",
   },
   {
-    title: "Social Media",
-    image: "/services/social-media.jpg",
-    alt: "Social media moodboard and campaign inspiration",
+    title: "Lead Generation",
+    image: "/services/lead-generation.jpg",
+    alt: "Digital marketing and lead generation inspiration",
+  },
+  {
+    title: "Content Creation",
+    image: "/services/content-creation.jpg",
+    alt: "Editorial content production inspiration",
   },
   {
     title: "Branding & Design",
@@ -24,14 +29,9 @@ const tiles = [
     alt: "Brand identity design studio inspiration",
   },
   {
-    title: "Content Creation",
-    image: "/services/content-creation.png",
-    alt: "Zimbabwean editorial content creator inspiration",
-  },
-  {
-    title: "Lead Generation",
-    image: "/services/lead-generation.jpg",
-    alt: "Digital marketing and lead generation inspiration",
+    title: "Web Design",
+    image: "/services/web-design.jpg",
+    alt: "Editorial website design inspiration",
   },
   {
     title: "Promo Video",
