@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Reveal } from "./motion";
 import { ServiceRail } from "./service-rail";
 import { Shell } from "./site-shell";
+import { ProjectHero } from "./project-hero";
 import { featuredProjects, liveProjects } from "@/data/liveProjects";
 import { email, pricing, whatsapp } from "@/data/site";
 
@@ -26,80 +27,21 @@ const adPlans = [
 
 export function HomePage() {
   return (
-    <Shell hideCTA>
+    <Shell hideCTA hideHeader>
       <main className="jm-home">
-        <section className="jm-hero jm-hero-v3">
-          <div className="shell hero-v3-grid">
-            <div className="hero-v3-copy">
-              <p className="jm-kicker light">
-                Independent creative agency · Zimbabwe
-              </p>
-              <h1>
-                Make your brand
-                <br />
-                <em>impossible to ignore.</em>
-              </h1>
-              <p className="jm-lead">
-                Jaeger Media brings websites, content and advertising into one
-                sharp digital presence—built to be remembered and chosen.
-              </p>
-              <div className="jm-actions">
-                <Link className="jm-btn pale" href={whatsapp}>
-                  WhatsApp us ↗
-                </Link>
-                <a className="jm-btn dark-line" href={`mailto:${email}`}>
-                  Email us
-                </a>
-              </div>
-            </div>
-
-            <div
-              className="jm-signal-stage"
-              role="img"
-              aria-label="Jaeger Media creative signal"
-            >
-              <div className="signal-orbit orbit-one" aria-hidden="true" />
-              <div className="signal-orbit orbit-two" aria-hidden="true" />
-              <div className="signal-sweep" aria-hidden="true" />
-              <div className="signal-core">
-                <Image
-                  src="/jaeger-logo-secondary.jpg"
-                  alt="Jaeger Media monogram"
-                  fill
-                  sizes="(max-width: 700px) 65vw, 420px"
-                  priority
-                />
-              </div>
-              <span className="orbit-label label-web">WEB / 01</span>
-              <span className="orbit-label label-ads">ADS / 02</span>
-              <span className="orbit-label label-brand">BRAND / 03</span>
-              <span className="signal-status">
-                <i /> Signal live
-              </span>
-            </div>
-          </div>
-          <div
-            className="hero-v3-ticker"
-            role="region"
-            aria-label="Jaeger Media capabilities"
-          >
-            <span>{liveProjects.length} published websites</span>
-            <span>Where vision meets results</span>
-            <span>Web · Ads · Content · Brand</span>
-          </div>
-        </section>
+        <ProjectHero />
 
         <section className="jm-services">
           <div className="shell">
             <Reveal className="jm-section-head">
               <p className="jm-kicker light">What we do</p>
               <h2>
-                The work behind
+                What we do.
                 <br />
-                the results.
+                One digital presence.
               </h2>
               <p>
-                Everything we build connects back to how your business is seen,
+                Different services, working together to make your business seen,
                 found and chosen.
               </p>
             </Reveal>
@@ -192,12 +134,13 @@ export function HomePage() {
             </Reveal>
             <Reveal>
               <p className="story-large">
-                Jaeger Media started with a simple idea: businesses shouldn’t
-                have to choose between looking professional and getting results.
+                Jaeger Media is a Zimbabwean digital agency built by two
+                brothers around one simple idea: good digital work should look
+                sharp and help the business move.
               </p>
               <p>
-                What began with designs, websites and direct outreach grew into
-                an agency working across websites, advertising, content and
+                What started with websites, designs and direct outreach grew
+                into work across advertising, social media, digital products and
                 ongoing brand management.
               </p>
               <p>
@@ -222,8 +165,14 @@ export function HomePage() {
               <Reveal className="team-person ronan">
                 <div className="team-visual">
                   <span>FRONT</span>
-                  <div className="team-initials">R</div>
-                  <small>/public/team/ronan.png</small>
+                  <Image
+                    className="team-photo"
+                    src="/team/ronan.jpg"
+                    alt="Ronan, Founder and Creative & Client Lead at Jaeger Media"
+                    fill
+                    sizes="(max-width: 700px) 100vw, 34vw"
+                  />
+                  <small>01 / RONAN</small>
                 </div>
                 <div>
                   <p className="jm-kicker light">Clients · Creative · Growth</p>
@@ -239,8 +188,14 @@ export function HomePage() {
               <Reveal className="team-person mikey">
                 <div className="team-visual">
                   <span>BACK</span>
-                  <div className="team-initials">M</div>
-                  <small>/public/team/mikey.png</small>
+                  <Image
+                    className="team-photo"
+                    src="/team/mikey.jpg"
+                    alt="Michael Mikey, Development and Technical Lead at Jaeger Media"
+                    fill
+                    sizes="(max-width: 700px) 100vw, 32vw"
+                  />
+                  <small>02 / MIKEY</small>
                 </div>
                 <div>
                   <p className="jm-kicker light">
@@ -414,12 +369,12 @@ export function HomePage() {
               can help.
             </p>
             <div className="jm-actions">
-              <Link className="jm-btn pale" href={whatsapp}>
-                WhatsApp us ↗
-              </Link>
-              <a className="jm-btn dark-line" href={`mailto:${email}`}>
-                Email us
+              <a className="jm-btn pale" href={`mailto:${email}`}>
+                Start a project ↗
               </a>
+              <Link className="jm-btn dark-line" href={whatsapp}>
+                WhatsApp us
+              </Link>
             </div>
           </div>
         </section>

@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   description:
     "Premium websites, paid advertising, social media, branding and lead generation systems built to move businesses forward.",
   icons: {
-    icon: "/jaeger-logo-secondary.jpg",
-    shortcut: "/jaeger-logo-secondary.jpg",
+    icon: "/jaeger-logo-transparent.png",
+    shortcut: "/jaeger-logo-transparent.png",
   },
 };
 

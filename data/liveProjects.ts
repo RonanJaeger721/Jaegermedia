@@ -13,6 +13,7 @@ export const liveProjects: LiveProject[] = [
   {
     name: "Smartview",
     logo: "/clients/smartview.png",
+    screenshot: "/projects/smartview-hero.png",
     url: "https://www.smartview.co.zw/",
     service: web,
     industry: "Aluminium & Glass",
@@ -32,6 +33,7 @@ export const liveProjects: LiveProject[] = [
   {
     name: "Skin Essentials",
     logo: "/clients/skin-essentials.png",
+    screenshot: "/projects/skin-essentials-hero.png",
     url: "https://www.skinessentials.co.zw/",
     service: web,
     industry: "Skincare",
@@ -41,6 +43,7 @@ export const liveProjects: LiveProject[] = [
   {
     name: "EM Nutrition",
     logo: "/clients/em-nutrition.jpeg",
+    screenshot: "/projects/em-nutrition-hero.png",
     url: "https://www.emnutrition.co.zw/",
     service: web,
     industry: "Nutrition",

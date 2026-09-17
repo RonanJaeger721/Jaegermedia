@@ -9,10 +9,14 @@ export function Header() {
     <>
       <header className="nav">
         <Link className="brand" href="/">
-          <span className="brand-monogram" aria-hidden="true">
-            JM
-          </span>
-          <span className="brand-name">JAEGER MEDIA</span>
+          <Image
+            className="brand-logo"
+            src="/jaeger-logo-transparent.png"
+            alt="Jaeger Media"
+            width={310}
+            height={106}
+            priority
+          />
         </Link>
         <nav className="navlinks" aria-label="Main navigation">
           {nav.map(([n, h]) => (
@@ -53,10 +57,10 @@ export function Footer() {
           <div>
             <Link className="brand" href="/">
               <Image
-                src="/jaeger-logo-primary.png"
+                src="/jaeger-logo-transparent.png"
                 alt="Jaeger Media"
-                width={210}
-                height={123}
+                width={310}
+                height={106}
               />
             </Link>
             <p>Where Vision Meets Results.</p>
@@ -113,13 +117,15 @@ export function CTA() {
 export function Shell({
   children,
   hideCTA = false,
+  hideHeader = false,
 }: {
   children: React.ReactNode;
   hideCTA?: boolean;
+  hideHeader?: boolean;
 }) {
   return (
     <>
-      <Header />
+      {!hideHeader && <Header />}
       {children}
       {!hideCTA && <CTA />}
       <Footer />
