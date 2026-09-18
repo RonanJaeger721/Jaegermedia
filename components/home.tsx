@@ -19,25 +19,13 @@ export function HomePage() {
       <main className="jm-home">
         <ProjectHero />
 
-        <section className="agency-approach">
-          <div className="shell approach-grid">
-            <Reveal><p className="jm-kicker">Our approach</p><h2>Good content<br/>meets the<br/><em>right audience.</em></h2></Reveal>
-            <Reveal><p className="approach-lead">We combine creative, paid media and practical conversion systems to help businesses get noticed and give potential customers a clear reason to respond.</p><div className="approach-points"><span><b>01</b>Smart creative</span><span><b>02</b>Smart distribution</span><span><b>03</b>Real business activity</span></div><Link href="/process">How we work ↗</Link></Reveal>
-          </div>
-        </section>
-
         <section className="jm-services" id="services">
           <div className="shell">
             <Reveal className="jm-section-head">
               <p className="jm-kicker light">What we do</p>
-              <h2>
-                One agency.
-                <br />
-                Your digital presence.
-              </h2>
+              <h2>What we do.</h2>
               <p>
-                From the first piece of content to the ad that puts it in front
-                of the right people, we build the digital presence around the business.
+                One team across the digital side of your business.
               </p>
             </Reveal>
           </div>
