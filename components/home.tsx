@@ -8,21 +8,9 @@ import { featuredProjects, liveProjects } from "@/data/liveProjects";
 import { email, pricing, whatsapp } from "@/data/site";
 
 const adPlans = [
-  [
-    "Start",
-    "$250 minimum",
-    "Agreed starter ad spend and Jaeger Media service fee for smaller campaigns and testing.",
-  ],
-  [
-    "Grow",
-    "$500",
-    "A higher campaign budget and management scope for testing more creative and audience combinations.",
-  ],
-  [
-    "Scale",
-    "$800",
-    "More active campaign management, creative testing and ongoing optimisation.",
-  ],
+  { name: "Start", total: "$250", service: "$150", spend: "$100", description: "A starter campaign for testing an offer, audience or campaign direction." },
+  { name: "Grow", total: "$500", service: "$250", spend: "$250", description: "A stronger campaign budget for more reach and creative testing." },
+  { name: "Scale", total: "$800", service: "$500", spend: "$300", description: "Higher-touch management, creative involvement and optimisation." },
 ];
 
 export function HomePage() {
@@ -30,11 +18,6 @@ export function HomePage() {
     <Shell hideCTA hideHeader>
       <main className="jm-home">
         <ProjectHero />
-
-        <section className="hero-trust" aria-label="Businesses we have built for">
-          <div className="shell trust-heading"><p>Businesses we&apos;ve built for.</p><span>Real businesses. Real work.</span></div>
-          <div className="logo-rail"><div className="logo-track">{[...liveProjects,...liveProjects].map((project,index)=><a key={`trust-${project.name}-${index}`} className="live-logo" href={project.url} target="_blank" rel="noopener noreferrer">{project.logo?<Image src={project.logo} alt={`${project.name} logo`} width={240} height={110}/>:<strong className="text-mark">{project.mark}</strong>}<span><b>{project.name}</b><small>View project ↗</small></span></a>)}</div></div>
-        </section>
 
         <section className="agency-approach">
           <div className="shell approach-grid">
@@ -100,7 +83,7 @@ export function HomePage() {
         <section className="jm-live" id="websites">
           <div className="shell">
             <Reveal className="jm-section-head dark-text">
-              <p className="jm-kicker">Live on the web</p>
+              <p className="jm-kicker">Work we can point to</p>
               <h2>
                 Real work.
                 <br />
@@ -112,7 +95,7 @@ export function HomePage() {
               </p>
             </Reveal>
           </div>
-          <div className="logo-rail legacy-live-logos">
+          <div className="logo-rail">
             <div className="logo-track">
               {[...liveProjects, ...liveProjects].map((project, i) => (
                 <a
@@ -224,11 +207,10 @@ export function HomePage() {
                 <div>
                   <p className="jm-kicker light">Clients · Creative · Growth</p>
                   <h3>Ronan</h3>
-                  <h4>Founder / Creative & Client Lead</h4>
+                  <h4>Co-Founder / Creative & Client Lead</h4>
                   <p>
-                    Ronan is the face of Jaeger Media, handling client relationships,
-                    creative direction, campaigns and growth. He works directly with
-                    businesses to shape the offer and turn it into content people respond to.
+                    Ronan leads the client-facing and creative side of Jaeger Media —
+                    working across strategy, content, campaigns, communication and growth.
                   </p>
                 </div>
               </Reveal>
@@ -249,11 +231,10 @@ export function HomePage() {
                     Development · Systems · Deployment
                   </p>
                   <h3>Michael “Mikey”</h3>
-                  <h4>Development & Technical Lead</h4>
+                  <h4>Co-Founder / Development & Technical Lead</h4>
                   <p>
-                    Mikey works behind the build — handling development, backend systems,
-                    technical implementation and deployment. He turns strategy and creative
-                    direction into working digital products and systems.
+                    Michael leads the technical side of Jaeger Media — development,
+                    backend systems, deployment and the infrastructure behind the work.
                   </p>
                 </div>
               </Reveal>
@@ -312,11 +293,12 @@ export function HomePage() {
               </p>
             </Reveal>
             <div className="ad-plans">
-              {adPlans.map(([name, price, desc]) => (
-                <Reveal key={name}>
-                  <span>{name}</span>
-                  <strong>USD {price}</strong>
-                  <p>{desc}</p>
+              {adPlans.map((plan) => (
+                <Reveal key={plan.name}>
+                  <span>{plan.name}</span>
+                  <strong>USD {plan.total.slice(1)}</strong>
+                  <div className="ad-split"><b>{plan.service}<small>Service</small></b><b>{plan.spend}<small>Ad spend</small></b></div>
+                  <p>{plan.description}</p>
                   <Link href="/contact">Discuss campaign ↗</Link>
                 </Reveal>
               ))}
@@ -330,10 +312,10 @@ export function HomePage() {
               <Link href="/contact">Contact us ↗</Link>
             </div>
             <p className="ad-note">
-              Exact ad spend allocation, campaign duration, deliverables and
-              management scope are confirmed before launch. Third-party platform
-              costs are subject to the campaign agreement. Results are never
-              guaranteed.
+              Ad spend is allocated to the advertising platform. The service fee
+              covers planning, setup, creative direction, targeting, monitoring,
+              optimisation and management. Duration and deliverables are confirmed
+              before launch. Results are never guaranteed.
             </p>
           </div>
         </section>

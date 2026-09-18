@@ -1,470 +1,100 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { ArrowRight } from "lucide-react";
 import { Shell } from "./site-shell";
 import { Reveal } from "./motion";
-import {
-  clients,
-  email,
-  faqs,
-  pricing,
-  projects,
-  services,
-  whatsapp,
-} from "@/data/site";
-const intro: Record<string, [string, string, string]> = {
-  about: [
-    "Inside Jaeger",
-    "Built on the belief that better design creates better business.",
-    "Jaeger Media is a creative digital agency helping businesses grow through strong design, smart marketing and a modern online presence.",
-  ],
-  services: [
-    "What we do",
-    "Creative and growth, working as one.",
-    "From the first impression to the final enquiry, we build connected digital experiences that look right and work hard.",
-  ],
-  work: [
-    "Selected work",
-    "Proof is in the presence.",
-    "A growing body of websites, campaign systems and brand experiences created for businesses ready to move forward.",
-  ],
-  "case-studies": [
-    "Case studies",
-    "The thinking behind the finish.",
-    "A structured look at the challenge, the decisions and the work delivered. Detailed verified outcomes can be added as each project is documented.",
-  ],
-  process: [
-    "Our process",
-    "Clear enough to trust. Flexible enough to create.",
-    "A collaborative path from first conversation to launch, with every stage designed to protect quality and momentum.",
-  ],
-  pricing: [
-    "Pricing",
-    "A stronger presence starts here.",
-    "Clear website packages and custom scopes for social media, advertising, branding and ongoing growth.",
-  ],
-  contact: [
-    "Start a project",
-    "Tell us where you want to go.",
-    "Tell us about your business and what you need. We’ll come back with a practical next step.",
-  ],
-};
-function Hero({ type }: { type: string }) {
-  const [e, h, p] = intro[type];
-  return (
-    <section className="page-hero">
-      <div className="shell">
-        <p className="eyebrow">{e}</p>
-        <h1 className="display">{h}</h1>
-        <p>{p}</p>
+import { email, services, whatsapp } from "@/data/site";
+import { agencyProjects, projectCategories } from "@/data/projects";
+
+const primaryServices = [
+  ["Social Media", "Planning, graphics, Reels, captions, publishing and ongoing brand management."],
+  ["Paid Advertising", "Meta, Instagram and TikTok campaigns built around the offer, audience and next action."],
+  ["Lead Generation", "Connected paths from content and ads to landing pages, WhatsApp, forms and real conversations."],
+  ["Content Creation", "Campaign ideas, filming, editing, social creative and short-form video."],
+  ["Web Development", "Responsive digital home bases that build trust and turn traffic into enquiries."],
+  ["Branding", "Identity, graphics, flyers and campaign assets that make the business recognisable."],
+] as const;
+
+function ServicesPage() {
+  return <>
+    <section className="services-opening">
+      <div className="shell services-opening-grid">
+        <div><p>Services · Harare, Zimbabwe</p><h1>What<br/>we<br/>handle.</h1></div>
+        <div className="service-index">{primaryServices.map(([title],index)=><a key={title} href={`#service-${index+1}`}><span>0{index+1}</span><b>{title}</b><i>↗</i></a>)}</div>
+        <p className="services-intro">The complete digital side of the business—from what customers see to how they respond.</p>
       </div>
     </section>
-  );
+    <section className="service-editorial shell">{primaryServices.map(([title,copy],index)=><Reveal className="service-chapter" key={title}><span id={`service-${index+1}`}>0{index+1}</span><div><h2>{title}</h2><p>{copy}</p><div>{services[index]?.items.map(item=><small key={item}>{item}</small>)}</div><Link href="/contact">Discuss this service <ArrowRight size={15}/></Link></div></Reveal>)}</section>
+  </>;
 }
-function About() {
-  return (
-    <>
-      <Hero type="about" />
-      <section className="section shell split">
-        <p className="eyebrow">Our point of view</p>
-        <Reveal className="prose">
-          <h2 className="display">
-            Looking good is the beginning—not the outcome.
-          </h2>
-          <p>
-            We care about the complete signal a business sends: the clarity of
-            its message, the confidence of its visual identity, the ease of its
-            website and the path that turns interest into a conversation.
-          </p>
-          <p>
-            That is why our work crosses design and growth. A beautiful site is
-            stronger when the advertising, content and conversion journey
-            support the same idea.
-          </p>
-        </Reveal>
-      </section>
-      <section className="section shell">
-        <div className="values">
-          {[
-            [
-              "01",
-              "Clarity",
-              "We remove noise so the right message lands quickly.",
-            ],
-            [
-              "02",
-              "Craft",
-              "Details matter because trust is built in the details.",
-            ],
-            [
-              "03",
-              "Momentum",
-              "We favour practical progress over endless complexity.",
-            ],
-            [
-              "04",
-              "Partnership",
-              "Good work comes from honest, responsive collaboration.",
-            ],
-          ].map(([n, h, p]) => (
-            <Reveal className="value glass" key={n}>
-              <span className="muted">{n}</span>
-              <h3>{h}</h3>
-              <p>{p}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    </>
-  );
+
+function WorkPage() {
+  const [filter,setFilter]=useState<(typeof projectCategories)[number]>("All");
+  const shown=filter==="All"?agencyProjects:agencyProjects.filter(project=>project.category===filter);
+  const preview=shown.find(project=>project.cover) ?? agencyProjects.find(project=>project.cover);
+  return <>
+    <section className="work-opening">
+      <div className="shell work-mast"><p>2025 — 2026</p><h1>Selected<br/>work.</h1><span>Websites today. Social, paid, content and brand work can be added through the same project system as approved assets arrive.</span></div>
+      <div className="work-filter shell" role="group" aria-label="Filter projects">{projectCategories.map(category=><button key={category} className={filter===category?"active":""} onClick={()=>setFilter(category)}>{category}</button>)}</div>
+    </section>
+    <section className="work-browser shell">
+      <div className="work-list">{shown.length?shown.map((project,index)=><a href={project.liveUrl ?? `/case-studies#${project.id}`} target={project.liveUrl?"_blank":undefined} rel={project.liveUrl?"noopener noreferrer":undefined} key={project.id}><span>{String(index+1).padStart(2,"0")}</span><div><b>{project.title}</b><small>{project.category} · {project.year}</small></div><i>↗</i></a>):<div className="work-empty"><b>No approved work in this category yet.</b><p>The filter is ready for future projects without changing the layout.</p></div>}</div>
+      <div className="work-preview">{preview?.cover?<Image src={preview.cover} alt={`${preview.client} project preview`} fill sizes="48vw"/>:<span>JM</span>}</div>
+    </section>
+  </>;
 }
-function Services() {
-  return (
-    <>
-      <Hero type="services" />
-      <section className="shell">
-        {services.map((s, i) => (
-          <Reveal className="detail" key={s.title}>
-            <span className="step-index">0{i + 1}</span>
-            <div>
-              <h2 className="display">{s.title}</h2>
-              <p>{s.short}</p>
-              <div className="chips">
-                {s.items.map((x) => (
-                  <span className="chip" key={x}>
-                    {x}
-                  </span>
-                ))}
-              </div>
-              <Link href="/contact" className="btn ghost">
-                Discuss this service ↗
-              </Link>
-            </div>
-          </Reveal>
-        ))}
-      </section>
-    </>
-  );
+
+function AboutPage() {
+  return <>
+    <section className="about-opening shell">
+      <div className="about-title"><p>Jaeger Media · Social Media Marketing Agency · Harare</p><h1>Two brothers.<br/><em>One agency.</em></h1></div>
+      <div className="about-portraits"><div><Image src="/team/ronan.jpg" alt="Ronan, co-founder of Jaeger Media" fill priority sizes="45vw"/><span>Ronan · Co-founder</span></div><div><Image src="/team/mikey.jpg" alt="Michael Mikey, co-founder of Jaeger Media" fill priority sizes="45vw"/><span>Mikey · Co-founder</span></div></div>
+      <p className="about-intro">Jaeger Media was founded by brothers Ronan and Michael, combining the creative, client-facing and marketing side of the business with the technical systems behind the work.</p>
+    </section>
+    <section className="about-story"><div className="shell about-story-grid"><Reveal><p>Our story</p><h2>Built around<br/>the work.</h2></Reveal><Reveal><p className="story-lead">JAEGER MEDIA IS A SOCIAL MEDIA MARKETING AGENCY BASED IN HARARE, ZIMBABWE.</p><p>Founded by brothers Ronan and Michael, the agency started by building websites, designing creative work and approaching businesses directly.</p><p>That grew into a wider digital operation covering social media management, paid advertising, content creation, lead generation, branding and the systems businesses use to turn online attention into enquiries.</p><b>Where Vision Meets Results.</b></Reveal></div></section>
+  </>;
 }
-function Work() {
-  const [filter, setFilter] = useState("All");
-  const all = [
-    ...projects,
-    {
-      name: "GlowKraft",
-      type: "Branding",
-      summary: "Visual identity assets shaped for a confident beauty brand.",
-    },
-    {
-      name: "Social Campaign System",
-      type: "Social Media",
-      summary: "A reusable content framework for consistent brand presence.",
-    },
-    {
-      name: "Lead Campaign",
-      type: "Ads",
-      summary: "A focused ad-to-WhatsApp journey built around real enquiries.",
-    },
-  ];
-  const shown =
-    filter === "All" ? all : all.filter((p) => p.type.includes(filter));
-  return (
-    <>
-      <Hero type="work" />
-      <section className="section shell">
-        <div className="filters">
-          {["All", "Website", "Ads", "Branding", "Social Media"].map((f) => (
-            <button
-              key={f}
-              className={`filter ${filter === f ? "active" : ""}`}
-              onClick={() => setFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-        <div className="case-grid">
-          {shown.map((p) => (
-            <Reveal className="case glass" key={p.name}>
-              <span className="project-tag">{p.type}</span>
-              <h2 className="display">{p.name}</h2>
-              <p>{p.summary}</p>
-              <Link href="/case-studies" className="btn ghost">
-                View case study
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <div className="section">
-          <p className="eyebrow">Projects for</p>
-          <div className="reason-grid">
-            {clients.map((c, i) => (
-              <div className="reason" key={c}>
-                <span className="num">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{c}</h3>
-                <p>
-                  Text mark shown until an approved client logo is added to
-                  /public/clients.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+
+const adsPlans=[
+  {name:"Start",total:"$250",service:"$150",spend:"$100",copy:"A starter campaign for testing an offer, audience or campaign direction with professional setup and management."},
+  {name:"Grow",total:"$500",service:"$250",spend:"$250",copy:"A stronger campaign budget for reaching more people, testing creative and running a more substantial campaign."},
+  {name:"Scale",total:"$800",service:"$500",spend:"$300",copy:"Higher-touch management with increased creative involvement and optimisation."},
+] as const;
+const webPlans=[
+  {name:"Starter",total:"$150",copy:"A clean professional online presence for focused service businesses."},
+  {name:"Growth",total:"$250",copy:"Expanded pages, stronger visual design, portfolio, contact systems and enhanced motion."},
+  {name:"Premium",total:"$400",copy:"Custom layouts, more pages, advanced interaction and functionality according to scope."},
+] as const;
+
+function PricingPage() {
+  const [tab,setTab]=useState<"Ads"|"Web"|"Social">("Ads");
+  return <>
+    <section className="pricing-opening shell"><p>Clear commercial options</p><h1>What does it cost<br/>to work with JM?</h1><div className="pricing-tabs" role="tablist">{(["Ads","Web","Social"] as const).map(item=><button role="tab" aria-selected={tab===item} className={tab===item?"active":""} onClick={()=>setTab(item)} key={item}>{item}</button>)}</div></section>
+    <section className="pricing-stage">
+      <div className="shell">
+        {tab==="Ads"&&<><div className="transparent-pricing">{adsPlans.map(plan=><article key={plan.name}><span>{plan.name}</span><strong>{plan.total}</strong><small>Total campaign budget</small><div><b>{plan.service}<i>Service fee</i></b><b>{plan.spend}<i>Ad spend</i></b></div><p>{plan.copy}</p><Link href="/contact">Choose {plan.name} ↗</Link></article>)}</div><div className="performance-row"><b>Performance · Commission-based</b><span>Available for selected campaigns. Structure depends on the offer, objective, sales process, budget and scope.</span></div><p className="pricing-disclaimer">Ad spend is the portion allocated to the advertising platform. The Jaeger Media service fee covers campaign planning, setup, creative direction, audience targeting, monitoring, optimisation and management according to the agreed package. Campaign duration and deliverables are confirmed before launch. Results are never guaranteed.</p></>}
+        {tab==="Web"&&<div className="transparent-pricing web-price">{webPlans.map(plan=><article key={plan.name}><span>{plan.name}</span><strong>{plan.total}</strong><small>Website package</small><p>{plan.copy}</p><Link href="/contact">Choose {plan.name} ↗</Link></article>)}</div>}
+        {tab==="Social"&&<div className="social-price"><span>Social media management</span><h2>Custom monthly<br/>package.</h2><p>Content planning, social graphics, Reels, filming, editing, captions, posting, scheduling, community engagement and campaign support—scoped around what the business needs.</p><Link href="/contact">Get a monthly quote ↗</Link></div>}
+      </div>
+    </section>
+  </>;
 }
-function Cases() {
-  return (
-    <>
-      <Hero type="case-studies" />
-      <section className="section shell">
-        <div className="case-grid">
-          {projects.map((p) => (
-            <Reveal className="case glass" key={p.name}>
-              <span className="project-tag">{p.type}</span>
-              <h2 className="display">{p.name}</h2>
-              <p>
-                <b>Challenge</b>
-                <br />
-                Create a clearer, more credible digital presence suited to the
-                audience.
-              </p>
-              <p>
-                <b>What we did</b>
-                <br />
-                {p.summary}
-              </p>
-              <div className="chips">
-                <span className="chip">Strategy</span>
-                <span className="chip">Design</span>
-                <span className="chip">Build</span>
-              </div>
-              <small className="muted">
-                Verified performance outcomes to be added when approved.
-              </small>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-    </>
-  );
+
+function ContactPage() {
+  const [sent,setSent]=useState(false);
+  function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();const form=new FormData(event.currentTarget);const message=`Hi Jaeger Media, I'm ${form.get("name")} from ${form.get("business")}. I need: ${form.get("service")}. Budget: ${form.get("budget")}. ${form.get("message")}`;window.open(`https://wa.me/263789937251?text=${encodeURIComponent(message)}`,"_blank","noopener,noreferrer");setSent(true)}
+  return <section className="contact-opening shell"><div className="contact-intro"><p>Harare, Zimbabwe</p><h1>Let&apos;s talk<br/>about your<br/>business.</h1><div><a href={whatsapp}>WhatsApp · +263 78 993 7251 ↗</a><a href={`mailto:${email}`}>{email} ↗</a><span>Social · Ads · Leads · Content · Web · Brand</span></div></div><form className="clean-form" onSubmit={submit}><h2>Tell us what you need.</h2><div className="form-grid"><Field label="Name"><input required name="name"/></Field><Field label="Business"><input name="business"/></Field><Field label="Phone / WhatsApp"><input required name="phone" type="tel"/></Field><Field label="Email"><input required name="email" type="email"/></Field><Field label="What do you need?" full><select name="service" defaultValue="Multiple Services"><option>Social Media Management</option><option>Paid Advertising</option><option>Lead Generation</option><option>Website</option><option>Branding / Design</option><option>Content</option><option>Multiple Services</option><option>Other</option></select></Field><Field label="Budget" full><select name="budget" defaultValue="Let's discuss"><option>Under $150</option><option>$150 — $300</option><option>$300 — $500</option><option>$500+</option><option>Let&apos;s discuss</option></select></Field><Field label="Message" full><textarea required name="message" placeholder="What are you trying to achieve?"/></Field><div className="field full"><button type="submit">Send enquiry <ArrowRight size={15}/></button>{sent&&<p role="status">WhatsApp has opened with your enquiry ready to send.</p>}</div></div></form></section>;
 }
-function Process() {
-  return (
-    <>
-      <Hero type="process" />
-      <section className="section shell timeline">
-        {[
-          [
-            "01",
-            "Discovery",
-            "We begin with the business: goals, customers, offer, competitors, current materials and what success needs to look like.",
-          ],
-          [
-            "02",
-            "Strategy",
-            "We turn context into a focused plan for content, structure, messaging, design direction and the conversion journey.",
-          ],
-          [
-            "03",
-            "Design",
-            "We create the visual system and key screens, then refine the details until the experience feels right for the brand.",
-          ],
-          [
-            "04",
-            "Build",
-            "The approved direction becomes a responsive, fast and accessible experience with clean interactions and working action paths.",
-          ],
-          [
-            "05",
-            "Launch & Growth",
-            "After final checks, we launch. Campaigns, content and ongoing refinement can then compound the initial work.",
-          ],
-        ].map(([n, h, p]) => (
-          <Reveal className="phase" key={n}>
-            <span className="dot">{n}</span>
-            <div className="phase-card glass">
-              <h2 className="display">{h}</h2>
-              <p>{p}</p>
-            </div>
-          </Reveal>
-        ))}
-      </section>
-    </>
-  );
-}
-function Pricing() {
-  return (
-    <>
-      <Hero type="pricing" />
-      <section className="section shell">
-        <div className="price-grid">
-          {pricing.map((p, i) => (
-            <Reveal
-              key={p.name}
-              className={`price glass ${i === 1 ? "featured" : ""}`}
-            >
-              <h3>{p.name}</h3>
-              <span className="muted">{p.note}</span>
-              <strong>{p.price}</strong>
-              <ul>
-                {p.items.map((x) => (
-                  <li key={x}>— {x}</li>
-                ))}
-              </ul>
-              <Link className="btn ghost" href="/contact">
-                Choose package
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <div className="detail">
-          <h2 className="display">Custom growth support.</h2>
-          <div>
-            <p>
-              Social media management, ad management, branding, design retainers
-              and lead-generation systems are quoted according to scope, volume
-              and campaign needs.
-            </p>
-            <Link className="btn ghost" href="/contact">
-              Request a custom quote
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-function Contact() {
-  const [sent, setSent] = useState(false);
-  return (
-    <>
-      <Hero type="contact" />
-      <section className="section shell contact-grid">
-        <div>
-          <div className="contact-card glass">
-            <b>WhatsApp</b>
-            <span>Fastest way to start a conversation</span>
-            <br />
-            <Link href={whatsapp}>+263 78 993 7251 ↗</Link>
-          </div>
-          <div className="contact-card glass">
-            <b>Email</b>
-            <span>Send us your brief or project details.</span>
-            <br />
-            <a href={`mailto:${email}`}>{email} ↗</a>
-          </div>
-          <div className="contact-card glass">
-            <b>Response time</b>
-            <span>We aim to respond within one business day.</span>
-          </div>
-        </div>
-        <form
-          className="contact-form glass"
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-          }}
-        >
-          <div className="form-grid">
-            <Field label="Name">
-              <input required name="name" />
-            </Field>
-            <Field label="Business name">
-              <input name="business" />
-            </Field>
-            <Field label="Phone / WhatsApp">
-              <input required name="phone" type="tel" />
-            </Field>
-            <Field label="Email">
-              <input required name="email" type="email" />
-            </Field>
-            <Field label="Service needed">
-              <select name="service">
-                <option>Website design</option>
-                <option>Social media management</option>
-                <option>Paid advertising</option>
-                <option>Branding & graphics</option>
-                <option>Promo video</option>
-                <option>Lead generation</option>
-              </select>
-            </Field>
-            <Field label="Budget range">
-              <select name="budget">
-                <option>Under $100</option>
-                <option>$100 – $200</option>
-                <option>$200 – $500</option>
-                <option>$500+</option>
-                <option>Let’s discuss</option>
-              </select>
-            </Field>
-            <Field label="Message" full>
-              <textarea
-                required
-                name="message"
-                placeholder="Tell us about your business and what you need."
-              />
-            </Field>
-            <div className="field full">
-              <button className="btn" type="submit">
-                Send project enquiry ↗
-              </button>
-              {sent && (
-                <p role="status">
-                  Thank you — your enquiry has been captured for this preview.
-                  For an immediate response, please use WhatsApp.
-                </p>
-              )}
-            </div>
-          </div>
-        </form>
-      </section>
-      <section className="section shell faq">
-        <div>
-          <p className="eyebrow">Before you ask</p>
-          <h2 className="display">Useful answers.</h2>
-        </div>
-        <div>
-          {faqs.slice(0, 3).map(([q, a]) => (
-            <details key={q}>
-              <summary>{q}</summary>
-              <p>{a}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-    </>
-  );
-}
-function Field({
-  label,
-  children,
-  full = false,
-}: {
-  label: string;
-  children: React.ReactNode;
-  full?: boolean;
-}) {
-  return (
-    <label className={`field ${full ? "full" : ""}`}>
-      <span>{label}</span>
-      {children}
-    </label>
-  );
-}
-export function InnerPage({ type }: { type: string }) {
-  let page: React.ReactNode;
-  if (type === "about") page = <About />;
-  else if (type === "services") page = <Services />;
-  else if (type === "work") page = <Work />;
-  else if (type === "case-studies") page = <Cases />;
-  else if (type === "process") page = <Process />;
-  else if (type === "pricing") page = <Pricing />;
-  else page = <Contact />;
-  return (
-    <Shell>
-      <main>{page}</main>
-    </Shell>
-  );
+
+function ProcessPage(){return <><section className="process-opening shell"><p>How we work</p><h1>Clear steps.<br/>Close collaboration.</h1></section><section className="process-editorial shell">{[["01","Discover","Understand the business, offer and audience."],["02","Plan","Shape the message, creative and conversion path."],["03","Create","Produce the content, campaign or digital experience."],["04","Launch","Test, refine and put the work in front of people."],["05","Grow","Manage, learn and improve what comes next."]].map(([n,h,p])=><Reveal key={n}><span>{n}</span><h2>{h}</h2><p>{p}</p></Reveal>)}</section></>}
+function CasesPage(){return <><section className="cases-opening shell"><p>Case studies</p><h1>The work<br/>behind the work.</h1></section><section className="work-browser shell"><div className="work-list">{agencyProjects.filter(p=>p.featured).map((project,index)=><a id={project.id} href={project.liveUrl} target="_blank" rel="noopener noreferrer" key={project.id}><span>0{index+1}</span><div><b>{project.title}</b><small>{project.services.join(" · ")}</small><p>{project.description}</p></div><i>↗</i></a>)}</div></section></>}
+
+function Field({label,children,full=false}:{label:string;children:React.ReactNode;full?:boolean}){return <label className={`field ${full?"full":""}`}><span>{label}</span>{children}</label>}
+
+export function InnerPage({type}:{type:string}){
+  let page:React.ReactNode;
+  if(type==="services") page=<ServicesPage/>; else if(type==="work") page=<WorkPage/>; else if(type==="about") page=<AboutPage/>; else if(type==="pricing") page=<PricingPage/>; else if(type==="contact") page=<ContactPage/>; else if(type==="process") page=<ProcessPage/>; else page=<CasesPage/>;
+  return <Shell><main className={`inner-${type}`}>{page}</main></Shell>;
 }

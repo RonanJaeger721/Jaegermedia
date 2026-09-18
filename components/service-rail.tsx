@@ -1,91 +1,51 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
-const tiles = [
-  {
-    title: "Social Media Management",
-    image: "/services/social-media.jpg",
-    alt: "Social media moodboard and campaign inspiration",
-  },
-  {
-    title: "Paid Advertising",
-    image: "/services/paid-advertising.jpg",
-    alt: "Creative campaign production inspiration",
-  },
-  {
-    title: "Lead Generation",
-    image: "/services/lead-generation.jpg",
-    alt: "Digital marketing and lead generation inspiration",
-  },
-  {
-    title: "Content Creation",
-    image: "/services/content-creation.jpg",
-    alt: "Editorial content production inspiration",
-  },
-  {
-    title: "Branding & Design",
-    image: "/services/branding-design.jpg",
-    alt: "Brand identity design studio inspiration",
-  },
-  {
-    title: "Web Design",
-    image: "/services/web-design.jpg",
-    alt: "Editorial website design inspiration",
-  },
-  {
-    title: "Promo Video",
-    image: "/services/promo-video.jpg",
-    alt: "Behind the scenes video production inspiration",
-  },
-  {
-    title: "Strategy",
-    image: "/services/strategy.jpg",
-    alt: "Brand and marketing strategy moodboard inspiration",
-  },
+const services = [
+  { title: "Social Media", image: "/services/social-media.jpg", detail: "Planning, creative, Reels, captions and day-to-day brand management." },
+  { title: "Paid Advertising", image: "/services/content-creation.jpg", detail: "Purposeful Meta, Instagram and TikTok campaigns built around the offer." },
+  { title: "Lead Generation", image: "/projects/inner-living-hero.jpg", detail: "Clear paths from attention to WhatsApp, forms and real business enquiries." },
+  { title: "Content Creation", image: "/services/promo-video.jpg", detail: "Campaign photography, short-form video and content people want to stop for." },
+  { title: "Web Development", image: "/projects/smartview-hero.png", detail: "Credible digital homes that turn campaign traffic into action." },
+  { title: "Branding & Design", image: "/services/branding-design.jpg", detail: "Visual identities and campaign design that make businesses look established." },
 ] as const;
 
-function ServiceSet({ hidden = false }: { hidden?: boolean }) {
-  return (
-    <div className="service-loop-group" aria-hidden={hidden || undefined}>
-      {tiles.map((tile, index) => (
-        <article className="service-tile" key={tile.title}>
-          <Image
-            src={tile.image}
-            alt={hidden ? "" : tile.alt}
-            fill
-            sizes="(max-width: 700px) 68vw, 300px"
-          />
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <b>{tile.title}</b>
-        </article>
-      ))}
-    </div>
-  );
-}
-
 export function ServiceRail() {
+  const [active, setActive] = useState(0);
+  const selected = services[active];
+
   return (
     <div className="service-experience">
-      <div
-        className="service-rail"
-        role="region"
-        aria-label="Jaeger Media services"
-      >
-        <div className="service-track">
-          <ServiceSet />
-          <ServiceSet hidden />
-        </div>
+      <div className="service-index-list" role="list" aria-label="Jaeger Media services">
+        {services.map((service, index) => (
+          <button
+            type="button"
+            className={index === active ? "is-active" : ""}
+            onMouseEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onClick={() => setActive(index)}
+            aria-pressed={index === active}
+            key={service.title}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{service.title}</strong>
+            <i aria-hidden="true">↗</i>
+            <small>{service.detail}</small>
+          </button>
+        ))}
       </div>
-      <div className="service-name-marquee" aria-hidden="true">
-        <div className="service-name-track">
-          {[...tiles, ...tiles].map((tile, index) => (
-            <span key={`${tile.title}-${index}`}>
-              {tile.title} <i>↗</i>
-            </span>
-          ))}
-        </div>
-      </div>
+      <figure className="service-active-visual">
+        <Image
+          key={selected.image}
+          src={selected.image}
+          alt={`${selected.title} creative work and art direction`}
+          fill
+          sizes="(max-width: 820px) 100vw, 46vw"
+        />
+        <figcaption><span>What we handle</span><b>{selected.title}</b></figcaption>
+      </figure>
     </div>
   );
 }

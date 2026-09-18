@@ -7,14 +7,7 @@ import { useEffect, useState } from "react";
 import { whatsapp } from "@/data/site";
 
 const ease = [0.22, 1, 0.36, 1] as const;
-const capabilities = [
-  ["01", "Social media", "#social-media", "/services/social-media.jpg"],
-  ["02", "Paid advertising", "#paid-ads", "/services/content-creation.jpg"],
-  ["03", "Lead generation", "#lead-generation", null],
-  ["04", "Content", "#content", "/services/promo-video.jpg"],
-  ["05", "Websites", "#websites", "/projects/inner-living-hero.jpg"],
-  ["06", "Branding", "/services", "/clients/cablesting.png"],
-] as const;
+const capabilities = [["Social","#social-media"],["Ads","#paid-ads"],["Leads","#lead-generation"],["Content","#content"],["Web","#websites"],["Brand","/services"]] as const;
 
 export function ProjectHero() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,7 +44,9 @@ export function ProjectHero() {
 
         <motion.div className="founder-stage" initial={reduce ? false : { opacity: 0, clipPath: "inset(8% 0 0 0 round 30px)" }} animate={{ opacity: 1, clipPath: "inset(0% 0 0 0 round 30px)" }} transition={{ delay: .35, duration: .75, ease }}>
           <span className="founder-watermark">JM</span>
-          <Image className="founder-image" src="/team/ronan.jpg" alt="Ronan, founder and creative lead at Jaeger Media" fill priority sizes="(max-width: 820px) 92vw, 35vw"/>
+          <Image className="founder-image" src="/team/ronan.jpg" alt="Ronan, co-founder and creative lead at Jaeger Media" fill priority sizes="(max-width: 820px) 92vw, 35vw"/>
+          <div className="campaign-slice"><Image src="/services/content-creation.jpg" alt="Content production scene" fill sizes="190px"/></div>
+          <div className="social-slice"><Image src="/services/social-media.jpg" alt="Social campaign visual" fill sizes="150px"/></div>
           <span className="founder-label">Ronan · Creative / Strategy / Growth</span>
           <div className="asset asset-content"><Play size={13} fill="currentColor"/><span>Content ready</span></div>
           <div className="asset asset-ads"><i/><span>Campaign live</span></div>
@@ -66,8 +61,8 @@ export function ProjectHero() {
         </motion.aside>
       </div>
 
-      <motion.div className="hero-capability-rail" aria-label="Jaeger Media capabilities" initial={reduce ? false : { opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .72, duration: .65, ease }}>
-        {capabilities.map(([number, title, href, image], index) => <Link className={`capability-card card-${index} ${image ? "" : "type-card"}`} href={href} key={title}>{image ? <Image src={image} alt="" fill sizes="180px"/> : <strong>Attention<br/>→<br/>Enquiry</strong>}<span>#{number}</span><b>{title}</b><i>↗</i></Link>)}
+      <motion.div className="hero-service-line" aria-label="Jaeger Media capabilities" initial={reduce ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .72, duration: .65, ease }}>
+        {capabilities.map(([title,href],index)=><Link href={href} key={title}><span>0{index+1}</span><b>{title}</b></Link>)}
       </motion.div>
     </section>
   </>;
