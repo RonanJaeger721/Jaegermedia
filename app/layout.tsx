@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Montserrat_Alternates } from "next/font/google";
 import "./globals.css";
+import "./final.css";
 
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-body" });
 const display = Montserrat_Alternates({
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Jaeger Media",
   },
   description:
-    "Premium websites, paid advertising, social media, branding and lead generation systems built to move businesses forward.",
+    "Jaeger Media is a social media marketing agency in Harare offering social media management, paid advertising, lead generation, content, branding and websites.",
   icons: {
     icon: "/jaeger-logo-transparent.png",
     shortcut: "/jaeger-logo-transparent.png",

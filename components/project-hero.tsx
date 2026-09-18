@@ -1,13 +1,21 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, MessageCircle, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { whatsapp } from "@/data/site";
 
 const ease = [0.22, 1, 0.36, 1] as const;
-const capabilities = [["Social","#social-media"],["Ads","#paid-ads"],["Leads","#lead-generation"],["Content","#content"],["Web","#websites"],["Brand","/services"]] as const;
+const services = [
+  ["01", "Social media management", "Strategy, content and day-to-day management"],
+  ["02", "Paid advertising", "Meta, Instagram and TikTok campaigns"],
+  ["03", "Lead generation", "Clear paths from attention to enquiry"],
+  ["04", "Websites", "Credible, conversion-focused digital homes"],
+  ["05", "Branding & design", "Logos, identity and campaign creative"],
+  ["06", "Content production", "Reels, filming, editing and social assets"],
+] as const;
 
 export function ProjectHero() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,51 +27,35 @@ export function ProjectHero() {
     const timer = setTimeout(() => {
       setLoading(false);
       if (!seen) sessionStorage.setItem("jm-intro-seen", "1");
-    }, seen || reduce ? 0 : 760);
+    }, seen || reduce ? 0 : 600);
     return () => clearTimeout(timer);
   }, [reduce]);
 
   return <>
     <AnimatePresence>{loading && <motion.div className="jm-loader" exit={{ opacity: 0 }} transition={{ duration: .2 }}><div className="loader-lock" role="status" aria-label="Jaeger Media loading"><span className="loader-half left"/><span className="loader-half right"/></div></motion.div>}</AnimatePresence>
-    <section className="agency-hero" aria-label="Jaeger Media social media marketing agency">
-      <motion.nav className="agency-nav" aria-label="Homepage navigation" initial={reduce ? false : { opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .08, duration: .55, ease }}>
+    <section className="agency-hero agency-hero-clear" aria-label="Jaeger Media social media marketing agency">
+      <motion.nav className="agency-nav" aria-label="Homepage navigation" initial={reduce ? false : { opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, ease }}>
         <Link className="agency-logo" href="/" aria-label="Jaeger Media home"><Image src="/jaeger-logo-transparent.png" alt="Jaeger Media" width={270} height={92} priority/></Link>
-        <div className={`agency-links ${menuOpen ? "open" : ""}`}><Link href="/">Home</Link><Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/pricing">Pricing</Link></div>
+        <div className={`agency-links ${menuOpen ? "open" : ""}`}><Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/pricing">Pricing</Link><Link href="/contact">Contact</Link></div>
         <a className="agency-talk" href={whatsapp}>Let&apos;s talk <ArrowRight size={14}/></a>
         <button className="agency-menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>{menuOpen ? "×" : "≡"}</button>
       </motion.nav>
 
-      <div className="agency-hero-main">
-        <div className="agency-copy">
-          <motion.p className="agency-eyebrow" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2, duration: .5, ease }}>Hey, we&apos;re Jaeger Media.</motion.p>
-          <h1 aria-label="We turn attention into action">{["We turn", "attention", "into action."].map((line, index) => <motion.span key={line} initial={reduce ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .27 + index * .09, duration: .62, ease }}>{line}</motion.span>)}</h1>
-          <motion.p className="agency-lead" initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .58, duration: .52, ease }}>A social media marketing agency in Harare, helping businesses grow through content, advertising, lead generation, branding and digital experiences that turn attention into real enquiries.</motion.p>
-          <motion.div className="agency-actions" initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .72, duration: .52, ease }}><a href={whatsapp}>Start a project <ArrowRight size={15}/></a><Link href="/work">See our work</Link></motion.div>
+      <div className="clear-hero-grid">
+        <div className="clear-hero-copy">
+          <motion.p className="agency-eyebrow" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15, duration: .5, ease }}>Social media marketing agency · Harare, Zimbabwe</motion.p>
+          <h1>{["We build your", "digital presence.", "Then help it grow."].map((line, index) => <motion.span key={line} initial={reduce ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .22 + index * .08, duration: .58, ease }}>{line}</motion.span>)}</h1>
+          <motion.p className="clear-hero-lead" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .52, duration: .5, ease }}>Jaeger Media handles the content, advertising, lead generation, branding and websites businesses need to get noticed—and turn attention into real enquiries.</motion.p>
+          <motion.div className="agency-actions" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .62, duration: .5, ease }}><a href={whatsapp}>Start a project <ArrowRight size={15}/></a><Link href="/work">See our work</Link></motion.div>
           <p className="agency-tagline">Where Vision Meets Results.</p>
         </div>
 
-        <motion.div className="founder-stage" initial={reduce ? false : { opacity: 0, clipPath: "inset(8% 0 0 0 round 30px)" }} animate={{ opacity: 1, clipPath: "inset(0% 0 0 0 round 30px)" }} transition={{ delay: .35, duration: .75, ease }}>
-          <span className="founder-watermark">JM</span>
-          <Image className="founder-image" src="/team/ronan.jpg" alt="Ronan, co-founder and creative lead at Jaeger Media" fill priority sizes="(max-width: 820px) 92vw, 35vw"/>
-          <div className="campaign-slice"><Image src="/services/content-creation.jpg" alt="Content production scene" fill sizes="190px"/></div>
-          <div className="social-slice"><Image src="/services/social-media.jpg" alt="Social campaign visual" fill sizes="150px"/></div>
-          <span className="founder-label">Ronan · Creative / Strategy / Growth</span>
-          <div className="asset asset-content"><Play size={13} fill="currentColor"/><span>Content ready</span></div>
-          <div className="asset asset-ads"><i/><span>Campaign live</span></div>
-          <div className="asset asset-lead"><MessageCircle size={16}/><span>New enquiry</span></div>
+        <motion.div className="clear-service-board" initial={reduce ? false : { opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .3, duration: .65, ease }}>
+          <div className="clear-board-head"><span>What we handle</span><b>One team. The full digital picture.</b></div>
+          <div className="clear-service-list">{services.map(([number,title,detail])=><Link href="/services" key={title}><span>{number}</span><div><b>{title}</b><small>{detail}</small></div><i>↗</i></Link>)}</div>
+          <div className="clear-founders"><span>Founded and led by two brothers</span><div><b>Ronan</b><small>Co-Founder · Creative & Growth</small></div><div><b>Michael “Mikey”</b><small>Co-Founder · Development & Systems</small></div></div>
         </motion.div>
-
-        <motion.aside className="agency-side-copy" initial={reduce ? false : { opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: .62, duration: .55, ease }}>
-          <span>What we handle</span>
-          <h2>We build the digital side of your business.</h2>
-          <p>From the content people see to the ads that reach them and the systems that turn them into enquiries.</p>
-          <div><b>Social</b><b>Ads</b><b>Leads</b><b>Web</b><b>Brand</b></div>
-        </motion.aside>
       </div>
-
-      <motion.div className="hero-service-line" aria-label="Jaeger Media capabilities" initial={reduce ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .72, duration: .65, ease }}>
-        {capabilities.map(([title,href],index)=><Link href={href} key={title}><span>0{index+1}</span><b>{title}</b></Link>)}
-      </motion.div>
     </section>
   </>;
 }
