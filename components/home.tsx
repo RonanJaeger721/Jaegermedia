@@ -31,7 +31,19 @@ export function HomePage() {
       <main className="jm-home">
         <ProjectHero />
 
-        <section className="jm-services">
+        <section className="hero-trust" aria-label="Businesses we have built for">
+          <div className="shell trust-heading"><p>Businesses we&apos;ve built for.</p><span>Real businesses. Real work.</span></div>
+          <div className="logo-rail"><div className="logo-track">{[...liveProjects,...liveProjects].map((project,index)=><a key={`trust-${project.name}-${index}`} className="live-logo" href={project.url} target="_blank" rel="noopener noreferrer">{project.logo?<Image src={project.logo} alt={`${project.name} logo`} width={240} height={110}/>:<strong className="text-mark">{project.mark}</strong>}<span><b>{project.name}</b><small>View project ↗</small></span></a>)}</div></div>
+        </section>
+
+        <section className="agency-approach">
+          <div className="shell approach-grid">
+            <Reveal><p className="jm-kicker">Our approach</p><h2>Good content<br/>meets the<br/><em>right audience.</em></h2></Reveal>
+            <Reveal><p className="approach-lead">We combine creative, paid media and practical conversion systems to help businesses get noticed and give potential customers a clear reason to respond.</p><div className="approach-points"><span><b>01</b>Smart creative</span><span><b>02</b>Smart distribution</span><span><b>03</b>Real business activity</span></div><Link href="/process">How we work ↗</Link></Reveal>
+          </div>
+        </section>
+
+        <section className="jm-services" id="services">
           <div className="shell">
             <Reveal className="jm-section-head">
               <p className="jm-kicker light">What we do</p>
@@ -49,7 +61,7 @@ export function HomePage() {
           <ServiceRail />
         </section>
 
-        <section className="growth-engine">
+        <section className="growth-engine" id="paid-ads">
           <div className="shell growth-grid">
             <Reveal className="growth-copy">
               <p className="jm-kicker light">Paid advertising + lead generation</p>
@@ -58,6 +70,7 @@ export function HomePage() {
               <div className="platform-line"><span>Meta / Facebook</span><span>Instagram</span><span>TikTok</span></div>
               <Link href="/contact">Run ads with us ↗</Link>
             </Reveal>
+            <span className="section-anchor" id="lead-generation" />
             <Reveal className="lead-flow" aria-label="Lead generation journey">
               <div><span>01</span><b>Ad</b><small>The right offer</small></div><i>→</i>
               <div><span>02</span><b>Content</b><small>A clear message</small></div><i>→</i>
@@ -67,8 +80,9 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="social-core">
+        <section className="social-core" id="social-media">
           <div className="shell social-core-grid">
+            <span className="section-anchor" id="content" />
             <Reveal className="social-visual">
               <Image src="/services/content-creation.jpg" alt="Professional content production in a daylight studio" fill sizes="(max-width: 800px) 100vw, 48vw"/>
               <span>Content in production</span>
@@ -83,7 +97,7 @@ export function HomePage() {
           </div>
         </section>
 
-        <section className="jm-live">
+        <section className="jm-live" id="websites">
           <div className="shell">
             <Reveal className="jm-section-head dark-text">
               <p className="jm-kicker">Live on the web</p>
@@ -98,7 +112,7 @@ export function HomePage() {
               </p>
             </Reveal>
           </div>
-          <div className="logo-rail">
+          <div className="logo-rail legacy-live-logos">
             <div className="logo-track">
               {[...liveProjects, ...liveProjects].map((project, i) => (
                 <a
