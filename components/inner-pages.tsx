@@ -21,12 +21,12 @@ function ServicesPage() {
   return <>
     <section className="services-opening">
       <div className="shell services-opening-grid">
-        <div><p>Services · Harare, Zimbabwe</p><h1>What<br/>we<br/>handle.</h1></div>
+        <div><p>Services · Harare, Zimbabwe</p><h1>Marketing systems built<br/>to move businesses forward.</h1></div>
         <div className="service-index">{primaryServices.map(([title],index)=><a key={title} href={`#service-${index+1}`}><span>0{index+1}</span><b>{title}</b><i>↗</i></a>)}</div>
-        <p className="services-intro">The complete digital side of the business, from what customers see to how they respond.</p>
+        <p className="services-intro">Advertising, content, lead generation, web and branding, connected around what the business actually needs.</p>
       </div>
     </section>
-    <section className="service-editorial shell">{primaryServices.map(([title,copy],index)=><Reveal className="service-chapter" key={title}><span id={`service-${index+1}`}>0{index+1}</span><div><h2>{title}</h2><p>{copy}</p><div>{services[index]?.items.map(item=><small key={item}>{item}</small>)}</div><Link href="/contact">Discuss this service <ArrowRight size={15}/></Link></div></Reveal>)}</section>
+    <section className="service-editorial shell">{primaryServices.map(([title,copy],index)=><Reveal className="service-chapter" delay={index * .08} direction={index % 2 ? "left" : "right"} key={title}><span id={`service-${index+1}`}>0{index+1}</span><div><h2>{title}</h2><p>{copy}</p><div>{services[index]?.items.map(item=><small key={item}>{item}</small>)}</div><Link href="/contact">Discuss this service <ArrowRight size={15}/></Link></div></Reveal>)}</section>
   </>;
 }
 
@@ -36,7 +36,7 @@ function WorkPage() {
   const preview=shown.find(project=>project.cover) ?? agencyProjects.find(project=>project.cover);
   return <>
     <section className="work-opening">
-      <div className="shell work-mast"><p>2025 to 2026</p><h1>Selected<br/>work.</h1><span>Websites today. Social, paid, content and brand work can be added through the same project system as approved assets arrive.</span></div>
+      <div className="shell work-mast"><p>Selected portfolio · 2025 to 2026</p><h1>Work built for<br/>real businesses.</h1><span>Websites, campaigns and brand systems created to make each business easier to discover, understand and choose.</span></div>
       <div className="work-filter shell" role="group" aria-label="Filter projects">{projectCategories.map(category=><button key={category} className={filter===category?"active":""} onClick={()=>setFilter(category)}>{category}</button>)}</div>
     </section>
     <section className="work-browser shell">
@@ -49,11 +49,11 @@ function WorkPage() {
 function AboutPage() {
   return <>
     <section className="about-opening shell">
-      <div className="about-title"><p>Jaeger Media · Social Media Marketing Agency · Harare</p><h1>Two brothers.<br/><em>One agency.</em></h1></div>
-      <div className="about-portraits"><div><Image src="/team/ronan.jpg" alt="Ronan, co-founder of Jaeger Media" fill priority sizes="45vw"/><span>Ronan · Co-founder</span></div><div><Image src="/team/mikey.jpg" alt="Michael Mikey, co-founder of Jaeger Media" fill priority sizes="45vw"/><span>Mikey · Co-founder</span></div></div>
-      <p className="about-intro">Jaeger Media was founded by brothers Ronan and Michael, combining the creative, client-facing and marketing side of the business with the technical systems behind the work.</p>
+      <div className="about-title"><p>Jaeger Media · Social Media Marketing Agency · Harare</p><h1>Creative thinking.<br/><em>Commercial focus.</em></h1></div>
+      <div className="about-portraits"><div><Image src="/team/ronan.jpg" alt="Ronan, creative and marketing lead at Jaeger Media" fill priority sizes="45vw"/><span>Ronan · Creative / Marketing</span></div><div><Image src="/team/mikey.jpg" alt="Michael Mikey, development and digital lead at Jaeger Media" fill priority sizes="45vw"/><span>Mikey · Development / Digital</span></div></div>
+      <p className="about-intro">Jaeger Media is built around the businesses we work with. We connect advertising, content, lead generation, web development and brand design around what each business needs to grow.</p>
     </section>
-    <section className="about-story"><div className="shell about-story-grid"><Reveal><p>Our story</p><h2>Built around<br/>the work.</h2></Reveal><Reveal><p className="story-lead">JAEGER MEDIA IS A SOCIAL MEDIA MARKETING AGENCY BASED IN HARARE, ZIMBABWE.</p><p>Founded by brothers Ronan and Michael, the agency started by building websites, designing creative work and approaching businesses directly.</p><p>That grew into a wider digital operation covering social media management, paid advertising, content creation, lead generation, branding and the systems businesses use to turn online attention into enquiries.</p><b>Where Vision Meets Results.</b></Reveal></div></section>
+    <section className="about-story"><div className="shell about-story-grid"><Reveal direction="down"><p>Our approach</p><h2>Built to make<br/>businesses move.</h2></Reveal><Reveal direction="up"><p className="story-lead">JAEGER MEDIA IS A SOCIAL MEDIA MARKETING AGENCY BASED IN HARARE, ZIMBABWE.</p><p>We work across strategy, advertising, content, digital experiences and branding, connecting the pieces around what each business actually needs.</p><p>From the first impression to the final enquiry, our role is to create work people can see, understand and act on.</p><b>Where Vision Meets Results.</b></Reveal></div></section>
   </>;
 }
 

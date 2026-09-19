@@ -4,23 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useState } from "react";
 import { whatsapp } from "@/data/site";
+import { Header } from "./site-shell";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function ProjectHero() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const reduce = useReducedMotion();
 
   return (
     <section className="official-hero" aria-label="Jaeger Media social media marketing agency">
-      <motion.nav className="official-nav" aria-label="Homepage navigation" initial={reduce ? false : { opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .5, delay: .1, ease }}>
-        <Link className="official-logo" href="/" aria-label="Jaeger Media home"><Image src="/jaeger-logo-transparent.png" alt="Jaeger Media" width={270} height={92} priority/></Link>
-        <div className={`official-links ${menuOpen ? "open" : ""}`}><Link href="/services">Services</Link><Link href="/work">Work</Link><Link href="/about">About</Link><Link href="/pricing">Pricing</Link><Link href="/contact">Contact</Link></div>
-        <a className="official-start" href={whatsapp}>Start a project <ArrowRight size={14}/></a>
-        <button className="official-menu" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>{menuOpen ? "×" : "≡"}</button>
-      </motion.nav>
+      <Header />
 
       <div className="official-hero-grid">
         <div className="official-copy">

@@ -109,7 +109,7 @@ export function HomePage() {
           <div className="shell selected-builds">
             <p className="jm-kicker">Website portfolio</p>
             {featuredProjects.map((project, i) => (
-              <Reveal className="build-row" key={project.name}>
+              <Reveal className="build-row" delay={(i % 2) * .1} direction="scale" key={project.name}>
                 <div className="build-count">0{i + 1}</div>
                 <div className="build-shot">
                   <Image
@@ -139,24 +139,23 @@ export function HomePage() {
         <section className="jm-story">
           <div className="shell story-grid">
             <Reveal>
-              <p className="jm-kicker">The Jaeger story</p>
+              <p className="jm-kicker">About Jaeger Media</p>
               <h2>
-                The people behind Jaeger Media.
+                Built around the businesses we work with.
               </h2>
             </Reveal>
             <Reveal>
               <p className="story-large">
-                Jaeger Media is a social media marketing agency based in Harare,
-                Zimbabwe, founded by brothers Ronan and Michael.
+                Jaeger Media connects advertising, content, lead generation, web
+                development and brand design around what each business needs.
               </p>
               <p>
-                What started with websites, design and direct outreach developed
-                into a wider digital agency focused on what businesses need online,
-                content, advertising, lead generation, branding and the systems behind them.
+                Strategy is only useful when it becomes work people can see,
+                understand and act on.
               </p>
               <p>
-                We stay close to the work. From the first conversation to the content,
-                campaign, website and launch, the same team remains involved throughout.
+                From first impression to final enquiry, we build the digital systems
+                that make businesses easier to discover and choose.
               </p>
             </Reveal>
           </div>
@@ -165,15 +164,15 @@ export function HomePage() {
         <section className="jm-team">
           <div className="shell">
             <Reveal className="jm-section-head">
-              <p className="jm-kicker light">The people behind it</p>
+              <p className="jm-kicker light">The people behind the work</p>
               <h2>
-                Two sides.
+                Creative, marketing
                 <br />
-                One agency.
+                and technical direction.
               </h2>
             </Reveal>
             <div className="team-layout">
-              <Reveal className="team-person ronan">
+              <Reveal className="team-person ronan" direction="right">
                 <div className="team-visual">
                   <span>FRONT</span>
                   <Image
@@ -186,16 +185,16 @@ export function HomePage() {
                   <small>01 / RONAN</small>
                 </div>
                 <div>
-                  <p className="jm-kicker light">Clients · Creative · Growth</p>
+                  <p className="jm-kicker light">Creative · Marketing</p>
                   <h3>Ronan</h3>
-                  <h4>Co-Founder / Creative & Client Lead</h4>
+                  <h4>Creative & Marketing</h4>
                   <p>
-                    Ronan leads the client-facing and creative side of Jaeger Media,
-                    working across strategy, content, campaigns, communication and growth.
+                    Ronan works across client strategy, creative direction, content,
+                    campaigns and commercial growth.
                   </p>
                 </div>
               </Reveal>
-              <Reveal className="team-person mikey">
+              <Reveal className="team-person mikey" direction="left" delay={.1}>
                 <div className="team-visual">
                   <span>BACK</span>
                   <Image
@@ -209,13 +208,13 @@ export function HomePage() {
                 </div>
                 <div>
                   <p className="jm-kicker light">
-                    Development · Systems · Deployment
+                    Development · Digital
                   </p>
                   <h3>Michael “Mikey”</h3>
-                  <h4>Co-Founder / Development & Technical Lead</h4>
+                  <h4>Development & Digital</h4>
                   <p>
-                    Michael leads the technical side of Jaeger Media, including development,
-                    backend systems, deployment and the infrastructure behind the work.
+                    Mikey leads development, technical implementation, deployment and the
+                    digital systems behind the work.
                   </p>
                 </div>
               </Reveal>
@@ -237,6 +236,7 @@ export function HomePage() {
               {pricing.map((plan, i) => (
                 <Reveal
                   className={`jm-price ${i === 1 ? "featured" : ""}`}
+                  delay={i * .09}
                   key={plan.name}
                 >
                   <span>0{i + 1}</span>
@@ -275,8 +275,8 @@ export function HomePage() {
               </p>
             </Reveal>
             <div className="ad-plans">
-              {adPlans.map((plan) => (
-                <Reveal key={plan.name}>
+              {adPlans.map((plan, index) => (
+                <Reveal key={plan.name} delay={index * .09}>
                   <span>{plan.name}</span>
                   <strong>USD {plan.total.slice(1)}</strong>
                   <div className="ad-split"><b>{plan.service}<small>Service</small></b><b>{plan.spend}<small>Ad spend</small></b></div>
@@ -325,7 +325,7 @@ export function HomePage() {
                   "For ongoing clients, we keep improving content, campaigns and digital presence.",
                 ],
               ].map(([h, p], i) => (
-                <Reveal key={h}>
+                <Reveal key={h} delay={i * .09}>
                   <span>0{i + 1}</span>
                   <h3>{h}</h3>
                   <p>{p}</p>
