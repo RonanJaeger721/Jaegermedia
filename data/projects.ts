@@ -43,7 +43,7 @@ export const agencyProjects: AgencyProject[] = liveProjects.map((project) => ({
   gallery: project.screenshot ? [project.screenshot] : [],
   liveUrl: project.url,
   description: project.description,
-  year: "2025 — 2026",
+  year: "2025 to 2026",
   featured: featuredNames.has(project.name),
   type: "live-site",
 }));

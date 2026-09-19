@@ -37,7 +37,7 @@ export function HomePage() {
             <Reveal className="growth-copy">
               <p className="jm-kicker light">Paid advertising + lead generation</p>
               <h2>Attention is good.<br/><em>Enquiries are better.</em></h2>
-              <p>We plan the offer, build the creative, define the audience and manage the campaign — with the focus on enquiries, leads and measurable business activity.</p>
+              <p>We structure campaigns around the right offer, the right audience and a clear path to genuine customer enquiries.</p>
               <div className="platform-line"><span>Meta / Facebook</span><span>Instagram</span><span>TikTok</span></div>
               <Link href="/contact">Run ads with us ↗</Link>
             </Reveal>
@@ -55,13 +55,13 @@ export function HomePage() {
           <div className="shell social-core-grid">
             <span className="section-anchor" id="content" />
             <Reveal className="social-visual">
-              <Image src="/services/content-creation.jpg" alt="Professional content production in a daylight studio" fill sizes="(max-width: 800px) 100vw, 48vw"/>
+              <Image src="/services/content-production-v2.png" alt="Professional content production for a business campaign" fill sizes="(max-width: 800px) 100vw, 48vw"/>
               <span>Content in production</span>
             </Reveal>
             <Reveal className="social-copy">
               <p className="jm-kicker">Social media management</p>
               <h2>Active. Consistent.<br/>Worth following.</h2>
-              <p>We keep brands active and recognisable — from planning and creative to publishing and ongoing campaign support.</p>
+              <p>We keep brands active, consistent and recognisable through structured planning, creative and ongoing campaign support.</p>
               <div className="social-list">{["Content planning","Social graphics","Reels / short video","Captions + posting","Community engagement","Campaign support","Brand consistency"].map((item)=><span key={item}>{item}</span>)}</div>
               <Link href="/contact">Get a management quote ↗</Link>
             </Reveal>
@@ -71,15 +71,10 @@ export function HomePage() {
         <section className="jm-live" id="websites">
           <div className="shell">
             <Reveal className="jm-section-head dark-text">
-              <p className="jm-kicker">Work we can point to</p>
-              <h2>
-                Real work.
-                <br />
-                Out in the world.
-              </h2>
+              <p className="jm-kicker">Selected work</p>
+              <h2>Our Portfolio</h2>
               <p>
-                A selection of websites we’ve designed and pushed live for
-                businesses we’ve worked with.
+                Selected websites, brands and campaigns we have brought to life.
               </p>
             </Reveal>
           </div>
@@ -112,7 +107,7 @@ export function HomePage() {
             </div>
           </div>
           <div className="shell selected-builds">
-            <p className="jm-kicker">Selected work · websites that complete the picture</p>
+            <p className="jm-kicker">Website portfolio</p>
             {featuredProjects.map((project, i) => (
               <Reveal className="build-row" key={project.name}>
                 <div className="build-count">0{i + 1}</div>
@@ -146,9 +141,7 @@ export function HomePage() {
             <Reveal>
               <p className="jm-kicker">The Jaeger story</p>
               <h2>
-                Built by two brothers.
-                <br />
-                Built around the work.
+                The people behind Jaeger Media.
               </h2>
             </Reveal>
             <Reveal>
@@ -158,7 +151,7 @@ export function HomePage() {
               </p>
               <p>
                 What started with websites, design and direct outreach developed
-                into a wider digital agency focused on what businesses need online —
+                into a wider digital agency focused on what businesses need online,
                 content, advertising, lead generation, branding and the systems behind them.
               </p>
               <p>
@@ -197,7 +190,7 @@ export function HomePage() {
                   <h3>Ronan</h3>
                   <h4>Co-Founder / Creative & Client Lead</h4>
                   <p>
-                    Ronan leads the client-facing and creative side of Jaeger Media —
+                    Ronan leads the client-facing and creative side of Jaeger Media,
                     working across strategy, content, campaigns, communication and growth.
                   </p>
                 </div>
@@ -221,7 +214,7 @@ export function HomePage() {
                   <h3>Michael “Mikey”</h3>
                   <h4>Co-Founder / Development & Technical Lead</h4>
                   <p>
-                    Michael leads the technical side of Jaeger Media — development,
+                    Michael leads the technical side of Jaeger Media, including development,
                     backend systems, deployment and the infrastructure behind the work.
                   </p>
                 </div>
@@ -236,7 +229,7 @@ export function HomePage() {
               <p className="jm-kicker light">Website pricing</p>
               <h2>Websites.</h2>
               <p>
-                Built around what the business actually needs — not unnecessary
+                Built around what the business actually needs, without unnecessary
                 complexity.
               </p>
             </Reveal>
@@ -249,6 +242,7 @@ export function HomePage() {
                   <span>0{i + 1}</span>
                   <h3>{plan.name}</h3>
                   <strong>USD {plan.price.slice(1)}</strong>
+                  <small className="one-time">One-time fee</small>
                   <p>{plan.note}</p>
                   <ul>
                     {plan.items.map((item) => (

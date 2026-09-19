@@ -11,16 +11,6 @@ export type LiveProject = {
 const web = "Website Design & Development";
 export const liveProjects: LiveProject[] = [
   {
-    name: "Smartview",
-    logo: "/clients/smartview.png",
-    screenshot: "/projects/smartview-hero.png",
-    url: "https://www.smartview.co.zw/",
-    service: web,
-    industry: "Aluminium & Glass",
-    description:
-      "A live digital presence for a specialist aluminium and glass business.",
-  },
-  {
     name: "Inner Living",
     logo: "/clients/inner-living.jpg",
     screenshot: "/projects/inner-living-hero.jpg",
@@ -29,6 +19,26 @@ export const liveProjects: LiveProject[] = [
     industry: "Interiors & Lifestyle",
     description:
       "A content-rich interiors experience bringing services, catalogue pieces and renovation stories into one clear digital home.",
+  },
+  {
+    name: "Strive Africa",
+    logo: "/clients/strive-africa.jpeg",
+    screenshot: "/projects/africa-strive-hero.png",
+    url: "https://www.africastrive.com/",
+    service: web,
+    industry: "Education",
+    description:
+      "A student-focused platform for applications, guidance and real journeys.",
+  },
+  {
+    name: "Smartview",
+    logo: "/clients/smartview.png",
+    screenshot: "/projects/smartview-hero.png",
+    url: "https://www.smartview.co.zw/",
+    service: web,
+    industry: "Aluminium & Glass",
+    description:
+      "A live digital presence for a specialist aluminium and glass business.",
   },
   {
     name: "Skin Essentials",
@@ -67,15 +77,6 @@ export const liveProjects: LiveProject[] = [
     industry: "Group Portfolio",
     description:
       "A refined group website bringing distinct business units into one story.",
-  },
-  {
-    name: "Strive Africa",
-    logo: "/clients/strive-africa.jpeg",
-    url: "https://www.africastrive.com/",
-    service: web,
-    industry: "Education",
-    description:
-      "A student-focused platform for applications, guidance and real journeys.",
   },
   {
     name: "Truck Gear Auto",

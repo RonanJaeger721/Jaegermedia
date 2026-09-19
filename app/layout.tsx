@@ -1,18 +1,13 @@
 import type { Metadata } from "next";
-import { Montserrat, Montserrat_Alternates } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import "./final.css";
 
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-body" });
-const display = Montserrat_Alternates({
-  subsets: ["latin"],
-  weight: ["500", "700", "800"],
-  variable: "--font-display",
-});
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Jaeger Media — Where Vision Meets Results",
+    default: "Jaeger Media | Where Vision Meets Results",
     template: "%s | Jaeger Media",
   },
   description:
@@ -29,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${display.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>{children}</body>
     </html>
   );

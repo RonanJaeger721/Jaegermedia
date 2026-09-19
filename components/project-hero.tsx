@@ -26,7 +26,7 @@ export function ProjectHero() {
         <div className="official-copy">
           <motion.p className="official-eyebrow" initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .2, duration: .45, ease }}>Social Media Marketing Agency · Harare, Zimbabwe</motion.p>
           <h1>{["Marketing built", "around your business."].map((line, index) => <motion.span key={line} initial={reduce ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .28 + index * .08, duration: .58, ease }}>{line}</motion.span>)}</h1>
-          <motion.p className="official-description" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .48, duration: .5, ease }}>Jaeger Media is a social media marketing agency based in Harare, helping businesses strengthen their online presence through content, advertising, lead generation, branding and web development.</motion.p>
+          <motion.p className="official-description" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .48, duration: .5, ease }}>We combine strategy, advertising, content, lead generation, web and branding to help businesses grow, attract the right audience and turn attention into results.</motion.p>
           <motion.div className="official-actions" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .58, duration: .5, ease }}><a href={whatsapp}>Start a project <ArrowRight size={15}/></a><Link href="/work">View our work</Link></motion.div>
           <p className="official-service-line">Social Media · Advertising · Content · Leads · Web · Branding</p>
         </div>

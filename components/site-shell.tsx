@@ -7,8 +7,8 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <header className="nav">
-        <Link className="brand" href="/">
+      <header className="official-nav global-official-nav">
+        <Link className="official-logo" href="/">
           <Image
             className="brand-logo"
             src="/jaeger-logo-transparent.png"
@@ -18,18 +18,18 @@ export function Header() {
             priority
           />
         </Link>
-        <nav className="navlinks" aria-label="Main navigation">
+        <nav className={`official-links ${open ? "open" : ""}`} aria-label="Main navigation">
           {nav.map(([n, h]) => (
             <Link key={h} href={h}>
               {n}
             </Link>
           ))}
         </nav>
-        <Link className="btn hidden-cta" href={whatsapp}>
-          WhatsApp <span className="arrow">↗</span>
+        <Link className="official-start" href="/contact">
+          Start a Project <span className="arrow">↗</span>
         </Link>
         <button
-          className="menu-btn"
+          className="official-menu"
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation"
           aria-expanded={open}
@@ -37,15 +37,6 @@ export function Header() {
           {open ? "×" : "≡"}
         </button>
       </header>
-      {open && (
-        <nav className="mobile-menu">
-          {nav.map(([n, h]) => (
-            <Link key={h} href={h} onClick={() => setOpen(false)}>
-              {n}
-            </Link>
-          ))}
-        </nav>
-      )}
     </>
   );
 }
@@ -91,7 +82,7 @@ export function Footer() {
         <div className="footer-bottom">
           <span>© {new Date().getFullYear()} Jaeger Media.</span>
           <Link href={whatsapp}>
-            Website built &amp; developed by Jaeger Media
+            Built &amp; Developed by Jaeger Media
           </Link>
         </div>
       </div>
@@ -102,7 +93,7 @@ export function CTA() {
   return (
     <section className="cta shell">
       <p className="eyebrow">Your next move</p>
-      <h2 className="display">Ready to look the part—and perform?</h2>
+      <h2 className="display">Ready to look the part and perform?</h2>
       <div className="hero-actions">
         <Link className="btn" href={whatsapp}>
           WhatsApp us <span className="arrow">↗</span>

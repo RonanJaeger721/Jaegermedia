@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 const services = [
-  { title: "Social Media", image: "/services/social-media.jpg", detail: "Planning, creative, Reels, captions and day-to-day brand management." },
-  { title: "Paid Advertising", image: "/services/content-creation.jpg", detail: "Purposeful Meta, Instagram and TikTok campaigns built around the offer." },
-  { title: "Lead Generation", image: "/projects/inner-living-hero.jpg", detail: "Clear paths from attention to WhatsApp, forms and real business enquiries." },
-  { title: "Content Creation", image: "/services/promo-video.jpg", detail: "Campaign photography, short-form video and content people want to stop for." },
-  { title: "Web Development", image: "/projects/smartview-hero.png", detail: "Credible digital homes that turn campaign traffic into action." },
-  { title: "Branding & Design", image: "/services/branding-design.jpg", detail: "Visual identities and campaign design that make businesses look established." },
+  { title: "Social Media Management", image: "/services/social-media.jpg", detail: "Planning, creative, Reels, captions and day-to-day brand management." },
+  { title: "Paid Advertising", image: "/services/paid-advertising-v2.png", detail: "Purposeful Meta, Instagram and TikTok campaigns built around the offer." },
+  { title: "Lead Generation", image: "/services/lead-generation-v2.png", detail: "The right offer, a simple next step and a real customer conversation." },
+  { title: "Content Production", image: "/services/content-production-v2.png", detail: "Campaign photography, short-form video and content people want to stop for." },
+  { title: "Web Development", image: "/projects/em-nutrition-hero.png", detail: "Credible digital homes that turn campaign traffic into action." },
+  { title: "Branding & Design", image: "/services/branding-design-v2.png", detail: "Visual identities and campaign design that make businesses recognisable." },
 ] as const;
 
 export function ServiceRail() {
